@@ -167,7 +167,7 @@ class Hexagon(Polygon):  #inherits from polygon
         Polygon._init_(self,side)
         
         def area(self):
-            Ah= (3*sqrt(3))*0.5* pow(int(self.side),2)
+            Ah= (3*sqrt(3))*0.5*pow(int(self.side),2)
             return  Ah      
         def perimeter():
             PR= 6* self.side
