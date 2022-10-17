@@ -1,19 +1,19 @@
 from abc import abstractmethod
 from multiprocessing.connection import wait
 from operator import ne
+from sys import hexversion
 import cv2
 from cv2 import waitKey
 from cv2 import sqrt
 import numpy as np
-import turtle as turt
+import turtle as trt
+
+#ALL TEAM MEMBERS 
+
+#Habiba Ahmed and Mohamed Maghraby
 
 class Polygon: #base class
-    def __init__(self,nsides ):
-        self.nsides=nsides
-        self.sides=[0 for i in range(nsides)]
-        def inputSides(self):
-            self.sides = [float(input("Enter side "+str(i+1)+" : ")) for i in range(self.nsides)]
-
+    
     @abstractmethod
     def  area():
         pass
@@ -22,7 +22,7 @@ class Polygon: #base class
         pass        
     @abstractmethod
     def draw(self):
-            tr = turt.Turtle()  
+            tr = trt.Turtle()  
             side = self.nsides 
             lngth = self.side
             
@@ -32,8 +32,8 @@ class Polygon: #base class
                 
                 
 class Quadrilateral(Polygon): #inherits from polygon
-    def __init__(self):
-        Polygon.__init__(self,4)
+    def __init__(self, side):
+        self.side=side
 
     def area(self):
         a, b = self.sides
@@ -46,16 +46,38 @@ class Quadrilateral(Polygon): #inherits from polygon
         print("The area of the triangle is %0.2f" %perim)       
 
     def draw (self):
-        pass                         
+        pass   
+    
+class Octagon(Polygon): 
+    def __init__(self, side):
+        self.side=side
+
+    def area(self):
+        a, b = self.sides
+        area = a*b
+        print('The area of the quadrilateral is %0.2f' %area)
+    
+    def perimeter(self):
+        a, b= self.sides
+        perim= (2*a)+(2*b)
+        print("The area of the triangle is %0.2f" %perim)       
+
+    def draw (self):
+        nsides=8
+        while nsides>0:
+            trt.forward(self.side)
+            trt.left(45)
+            nsides= nsides-1
+                        
 
 class Triangle(Polygon): #inherits from polygon
-    def __init__(self):
-        Polygon.__init__(self,3)
+    def __init__(self, side):
+        self.__side=side
 
     def area(self):
         a, b, c = self.sides
         s = (a + b + c) / 2
-        area = (s*(s-a)*(s-b)*(s-c)) ** 0.5
+        area = (s*(s-a)(s-b)(s-c)) ** 0.5
         print('The area of the triangle is %0.2f' %area)
     
     def perimeter(self):
@@ -67,90 +89,82 @@ class Triangle(Polygon): #inherits from polygon
         pass
         
         
-class Equilateral (Triangle):  #inherits from triangle
-    def __init__(self):
-        Polygon.__init__(self,3)
+class Equilateral (Triangle):  
+    def _init_(self):
+        Polygon._init_(self,3)
     def draw(self):
-        a, b, c = self.sides
-        h= (a+b+c)/2
-        row=0
-        while row<h:
-            space= h- row-1
-            while space>0:
-                print(end=" ")
-                space=space-1
-            star = row+1
-            while star>0:
-                print("*",end=" ")
-                star=star-1
-            row= row+1
-            print()
-            
+         trt.forward(self.sides)
+         trt.left(120)
+         trt.forward(self.sides)
+         trt.left(120)
+         trt.forward(self.sides)
+       
+       
 
-class Square(Quadrilateral): #TO BE DONE
-    def _init_(self,side) -> None:
-        #super()._init_(typee)
+class Square(Quadrilateral): 
+    def init(self,side) -> None:
+        #super().init(typee)
         self.side=side
     def area(self):
         return self.side**2
-    def perimiter(self):
+    def perimeter(self):
         return self.side*4
     def draw(self):
-        for i in range(0,self.side):
-            print("* ",end="")
-        print("")
-        for i in range(0,self.side-2):
-            print("*",end="")
-            for y in range(0,self.side*2-3):
-                print(" ",end="")
-            print("*")
-        print("",end="")
-        for i in range(0,self.side):
-            print("* ",end="") 
+        nsides=4
+        while nsides>0:
+         trt.forward(self.side)
+         trt.right(90)
+         nsides=nsides-1
+    
 
 
-class rectangle(Quadrilateral): #TO BE DONE
-    def _init_(self,length,width) -> None:
-        #super()._init_(typee)
-        self.length=length
-        self.width=width
+class rectangle(Quadrilateral):
+    def init(self,length,width) -> None:
+        #super().init(typee)
+        self.__length=length
+        self.__width=width
     def area(self):
         return self.length*self.width
-    def perimiter(self):
+    def perimeter(self):
         return (self.length+self.width)*2
     def draw(self):
-        for i in range(0,self.width):
-            print("* ",end="")
-        print("")
-        for i in range(0,self.length-2):
-            print("*",end="")
-            for y in range(0,self.width*2-3):
-                print(" ",end="")
-            print("*")
-        print("",end="")
-        for i in range(0,self.width):
-            print("* ",end="")
+         trt.forward(self.length)
+         trt.right(90)
+         trt.forward(self.width)
+         trt.right(90)
+         trt.forward(self.length)
+         trt.right(90)
+         trt.forward(self.width)
+         trt.right(90)
 
 
 
 class pentagon(Polygon):  #inherits from polygon
-    def __init__(self):
-        Polygon.__init__(self,5)
+    def _init_(self):
+        Polygon._init_(self,side)
 
         def area(self):
             Ap= 5.29508497187* pow(int(self.side),2)
             return  Ap         
 
         def draw(self):
-            super.draw(self)
+            nsides= 5
+            while nsides>0:
+             trt.forward(self.side)
+             trt.left(72)
+             nsides= nsides-1
+             
         
         def perimeter():
             PR= 5* self.side
             return PR
 
+
+#Manar Adel and Zeina Mohamed
+
 class Hexagon(Polygon):  #inherits from polygon
-    def __init__(self):
-        Polygon.__init__(self,6)
+    def _init_(self):
+        Polygon._init_(self,side)
         
         def area(self):
             Ah= (3*sqrt(3))*0.5* pow(int(self.side),2)
@@ -160,7 +174,11 @@ class Hexagon(Polygon):  #inherits from polygon
             return PR
 
         def draw(self):
-            super.draw(self)
+            nsides= 6
+            while nsides>0:
+             trt.forward(self.side)
+             trt.left(60)
+             nsides= nsides-1
             
      
      
@@ -169,17 +187,80 @@ class Hexagon(Polygon):  #inherits from polygon
 #Ask the user whether he wants to quit the program or enter an option again. (done)
 #Every user input must be validated by the application. Ask the user to enter the correct information if it is incorrect until the user gets it right. (use while loop) (done)
 
-
+side=0
+side1=0
+side2=0
 
 print("Which polygon do you want to draw?")
 print("----------------------------------")
 shape=""
 prog_exit_repeat="again"
-while((shape!="et" and shape!="it" and shape!="s" and shape!="r" and shape!="p" and shape!="h" and shape!="o" ) or (prog_exit_repeat!="q" and prog_exit_repeat=="again")): #loops until the user eneters the correct info
+#while((shape!="et" and shape!="it" and shape!="s" and shape!="r" and shape!="p" and shape!="h" and shape!="o" )): #loops until the user eneters the correct info
+#    print("Triangle: (Equilateral Triangle: et ), (Isosceles Triangle : it)")   
+#    print("Quadrilateral: (Square: s) , (Rectangle: r)")      
+#    print("(Pentagon: p) , (Hexagon: h) , (Octagon: o)")  
+    
+   
+   
+#call the constructor and add sides to it   
+
+while prog_exit_repeat!="q" and prog_exit_repeat=="again": 
+    
     print("Triangle: (Equilateral Triangle: et ), (Isosceles Triangle : it)")   
     print("Quadrilateral: (Square: s) , (Rectangle: r)")      
     print("(Pentagon: p) , (Hexagon: h) , (Octagon: o)")  
     shape=input("Enter here: ")
-    prog_exit_repeat=input("To quit, enter : (q)) || To enter another option, enter: (again): ")
+    
+    if(shape=='r'):
+        side1=int(input("enter side 1: "))
+        side2=int(input('enter side 2: '))
+        rec=rectangle(side1,side2)
+        
+    
+    elif (shape=='s'):
+        side=int(input('enter side length: '))
+        sq=Square(side)   
+        poly=sq
+    elif(shape=='et'):
+        side=int(input('enter side length: ')) 
+        eqt=Equilateral(side)
+        poly=eqt
+   
+    elif (shape=='p'):
+        side=int(input('enter side length: '))  
+        pen=pentagon(side) 
+        poly=pen
+    elif(shape=='h'):
+        side=int(input('enter side length: ')) 
+        hexa=Hexagon(side)  
+        poly=hexa
+    elif(shape=='o'):
+        side=int(input('enter side length: '))  
+        octa=Octagon(side)
+        poly=octa
+        
+    else:
+        print("Triangle: (Equilateral Triangle: et ), (Isosceles Triangle : it)")   
+        print("Quadrilateral: (Square: s) , (Rectangle: r)")      
+        print("(Pentagon: p) , (Hexagon: h) , (Octagon: o)")    
+        
+        
+        
+        
+    user_choice=input("to calculate area (a), to calculate perimeter (peri), to draw (d): ")     
+    if(user_choice=='a'):
+        #call the area function
+        poly.area()
+        break
+    elif(user_choice=='peri'):
+         #call the peri function
+         poly.perimeter()
+         break
+    elif (user_choice=='d'):
+        #call draw function
+        poly.draw()
+        break  
+    
+    prog_exit_repeat=input("To quit, enter : (q) || To enter another option, enter: (again): ")
+        
 
-               
